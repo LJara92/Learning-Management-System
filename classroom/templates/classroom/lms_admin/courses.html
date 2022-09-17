@@ -1,0 +1,54 @@
+{% extends "classroom/lms_admin_base.html" %}
+
+{% load static %}
+
+{% block choice %}
+    Instructors
+{% endblock choice %}
+
+{% block add_button %}
+<button id="js-add-new-choice-btn" class="w3-button w3-black" data-href="{% url 'classroom:lms_admin_add' choice='course' %}">Add new course</button>
+{% endblock add_button %}
+
+{% block content %}
+
+    <div class="w3-section w3-container">
+
+        
+        <table class="w3-table w3-bordered">
+            <thead>
+            <tr>
+            <th>Course code</th>
+            <th>Course title</th>
+            </tr>
+            </thead>
+            
+            <tbody>
+            {% for course in courses %}
+            <tr class="w3-hover-teal">
+            <td>{{course.code}}</td>
+            <td>{{course.title}}</td>
+            </tr>
+
+            {% empty %}
+            <tbody>
+                <tr>
+                    <td colspan="2" class="w3-grey w3-center">No data to display</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
+           
+
+{% endblock content %}
+
+{% block lms_admin_javascript %}
+
+<script src="{% static 'classroom/js/lms_admin/courses.js' %}"></script>
+
+
+{% endblock lms_admin_javascript %}

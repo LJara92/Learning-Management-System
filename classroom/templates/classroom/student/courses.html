@@ -1,0 +1,54 @@
+{% extends "classroom/student_base.html" %}
+
+{% load static %}
+
+{% block choice %}
+    Courses
+    <p>List of all the courses you are enrolled in</p>
+{% endblock choice %}
+
+{% block add_button %}
+
+{% endblock add_button %}
+
+{% block content %}
+
+    <div class="w3-section w3-container">
+
+        
+        <table class="w3-table w3-bordered">
+            <thead>
+            <tr>
+            <th>Course code</th>
+            <th>Course title</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for course in courses %}
+            <tr class="w3-hover-teal">
+            <td>{{course.code}}</td>
+            <td>{{course.title}}</td>
+            </tr>
+
+            {% empty %}
+            <tbody>
+                <tr>
+                    <td colspan="2" class="w3-grey w3-center">No data to display</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
+
+{% endblock content %}
+
+{% block student_javascript %}
+
+<script src="{% static 'classroom/js/student/courses.js' %}"></script>
+
+
+{% endblock student_javascript %}

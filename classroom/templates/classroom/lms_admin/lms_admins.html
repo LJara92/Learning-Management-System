@@ -1,0 +1,57 @@
+{% extends "classroom/lms_admin_base.html" %}
+
+{% load static %}
+
+{% block choice %}
+    Admin
+{% endblock choice %}
+
+{% block add_button %}
+<button id="js-add-new-choice-btn" class="w3-button w3-black" data-href="{% url 'classroom:lms_admin_add' choice='admin' %}">Add new admin staff </button>
+
+{% endblock add_button %}
+
+{% block content %}
+
+    <div class="w3-section w3-container">
+
+        
+        <table class="w3-table w3-bordered">
+            <thead>
+            <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>E-mail</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for admin in lms_admins %}
+            <tr>
+            <td>{{admin.first_name}}</td>
+            <td>{{admin.last_name}}</td>
+            <td>{{admin.email}}</td>
+            </tr>
+
+            {% empty %}
+            <tbody>
+                <tr>
+                    <td colspan="3" class="w3-grey w3-center">No data to display</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
+           
+
+{% endblock content %}
+
+{% block lms_admin_javascript %}
+
+<script src="{% static 'classroom/js/lms_admin/lms_admins.js' %}"></script>
+
+
+{% endblock lms_admin_javascript %}
